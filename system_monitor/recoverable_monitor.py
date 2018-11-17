@@ -1,12 +1,18 @@
 from system_monitor.failure_manager_based_on_db import FailureManagerBasedOnDatabase
-from admin_mailbox_handler.management.commands.nams.outlook_email_sender import send_email_from_win32_outlook, \
-    FailureEmail
 from ufs_tools.short_decorator.ignore_exception import ignore_exc
+from post_office.utils import send_mail
 
 
 class MonitorBase(object):
     def is_healthy(self):
         raise NotImplemented
+
+
+class FailureEmail(object):
+    def __init__(self, title, target):
+        super(FailureEmail, self).__init__()
+        self.title = title
+        self.target = target
 
 
 class RecoverableEventMonitor(object):
@@ -28,8 +34,9 @@ class RecoverableEventMonitor(object):
             if self.event_storage.is_alarm_needed():
                 self.gui_notify(self.monitor.error_title)
                 if self.target_email is not None:
-                    send_email_from_win32_outlook(mail=FailureEmail(target=self.target_email,
-                                                                    title=self.monitor.error_title))
+                    send_mail(from_email=self.target_email,
+                              recipient_list=[self.target_email],
+                              subject=self.monitor.error_title)
 
     @ignore_exc
     def gui_notify(self, text):
