@@ -20,7 +20,7 @@ class EventReporter(object):
             obj=self.obj)
         if is_last_event_a_failure_report:
             send_mail(from_email=self.recipient, recipient_list=[self.recipient],
-                      subject=title_base_message + ", ID: %d" % event.id, message="ATT")
+                      subject="ID %d: %s" % (event.id, title_base_message), message="ID: %d")
 
     def report_error(self, title_base_message, exception_msg):
         is_last_event_a_clear_failure = self.is_last_event_same_as(EventReporter.action_for_clearing_failure)
@@ -30,7 +30,7 @@ class EventReporter(object):
             obj=self.obj)
         if is_last_event_a_clear_failure:
             send_mail(from_email=self.recipient, recipient_list=[self.recipient],
-                      subject=title_base_message + ", ID: %d" % event.id, message=exception_msg)
+                      subject="ID %d: %s" % (event.id, title_base_message), message=exception_msg)
 
     def is_last_event_same_as(self, expected_event):
         events = Log.objects.filter(content_type=ContentType.objects.get_for_model(ContentType).id,
