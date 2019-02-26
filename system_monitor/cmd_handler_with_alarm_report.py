@@ -2,7 +2,7 @@ import traceback
 
 from djangoautoconf.cmd_handler_base.msg_process_cmd_base import DjangoCmdBase
 from obj_sys.models_ufs_obj import UfsObj
-from system_monitor.error_reporter import EventReporter
+from .error_reporter import EventReporter
 
 
 class CmdHandlerWithAlarmReport(DjangoCmdBase):
