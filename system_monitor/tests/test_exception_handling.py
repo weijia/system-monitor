@@ -3,6 +3,7 @@ from django.test import TestCase
 from system_monitor.cmd_handler_with_alarm_report import CmdHandlerWithAlarmReport
 
 
+# noinspection PyMethodMayBeStatic
 class HandlerClassBaseStub(object):
     def get_task_object_ufs_url(self):
         return "ufs://handler_class_stub"
