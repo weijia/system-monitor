@@ -12,7 +12,7 @@ class DecoratorTesterForSuccess(DjangoCmdBase):
                       exception=Exception,
                       recover_email_subject="Recovered",
                       failure_email_subject="Failed",
-                      is_notification_needed=False,
+                      is_notification_needed=True,
                       exception_result=None,
                       exception_callback=None,
                       )
@@ -28,7 +28,7 @@ class DecoratorTesterForFailure(DjangoCmdBase):
                       exception=Exception,
                       recover_email_subject="Recovered",
                       failure_email_subject="Failed",
-                      is_notification_needed=False,
+                      is_notification_needed=True,
                       exception_result=None,
                       exception_callback=None,
                       )
