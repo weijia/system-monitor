@@ -1,3 +1,5 @@
+import logging
+
 from error_reporter import EventReporter
 from ufs_tools.short_decorator.ignore_exception import ignore_exc_with_result
 import traceback
@@ -36,7 +38,7 @@ def report_exception(exception_owner_object=None,
                 return result
             except exception as e:
                 if is_notification_needed:
-                    print("ignored the following exception:______________________________________________")
+                    logging.error("ignored the following exception:______________________________________________")
                     traceback.print_exc()
                 elif exception_callback:
                     exception_callback(e)
